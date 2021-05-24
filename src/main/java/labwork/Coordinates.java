@@ -1,11 +1,12 @@
 package labwork;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  * Coordinates.
  */
-public class Coordinates {
+public class Coordinates implements Serializable {
     private Integer x; //Поле не может быть null
     private Float y; //Максимальное значение поля: 807, Поле не может быть null
 

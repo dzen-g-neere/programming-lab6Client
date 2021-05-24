@@ -1,11 +1,12 @@
 package labwork;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  * Person.
  */
-public class Person {
+public class Person implements Serializable {
     private String name; //Поле не может быть null, Строка не может быть пустой
     private long height; //Значение поля должно быть больше 0
     private Color eyeColor; //Поле может быть null

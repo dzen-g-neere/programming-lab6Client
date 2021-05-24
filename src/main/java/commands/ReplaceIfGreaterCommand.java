@@ -1,22 +1,23 @@
 package commands;
 
+import connection.Client;
+import connection.ExchangeClass;
 import exceptions.IncorrectScriptException;
 import exceptions.WrongArgumentException;
 import labwork.LabWork;
-import utility.CollectionManager;
 import utility.LabWorkAsker;
 
 public class ReplaceIfGreaterCommand extends AbstractCommand implements Command {
-    CollectionManager collectionManager;
     LabWorkAsker labWorkAsker;
+    private Client client;
 
     /**
      * This is command 'replace_if_greater'. Replaces element by key if new element is more than old one.
      */
-    public ReplaceIfGreaterCommand(CollectionManager collectionManager, LabWorkAsker labWorkAsker) {
+    public ReplaceIfGreaterCommand(Client client, LabWorkAsker labWorkAsker) {
         super("replace_if_greater", " \"key\" - заменить значение по ключу, если новое значение больше старого");
-        this.collectionManager = collectionManager;
         this.labWorkAsker = labWorkAsker;
+        this.client = client;
     }
 
     /**
@@ -24,15 +25,11 @@ public class ReplaceIfGreaterCommand extends AbstractCommand implements Command 
      */
     @Override
     public void execute(String argument) throws IncorrectScriptException {
-
-
-        LabWork labWorkOld;
         try {
             if (argument.isEmpty()) throw new WrongArgumentException();
-            labWorkOld = collectionManager.getByKey(argument);
             LabWork labWorkNew = new LabWork(
-                    labWorkOld.getId(),
-                    labWorkAsker.askName(),
+                    labWorkAsker.askID(),
+                    argument,
                     labWorkAsker.askCoordinates(),
                     labWorkAsker.askDate(),
                     labWorkAsker.askMinimalPoint(),
@@ -41,11 +38,8 @@ public class ReplaceIfGreaterCommand extends AbstractCommand implements Command 
                     labWorkAsker.askDifficulty(),
                     labWorkAsker.askAuthor()
             );
-            if (labWorkNew.compareTo(labWorkOld) > 0) {
-                collectionManager.removeKey(argument);
-                collectionManager.addLabWorkToCollection(labWorkNew.getName(), labWorkNew);
-                System.out.println("Замена успешна");
-            }
+            ExchangeClass exchangeClass = new ExchangeClass("replace_if_greater", argument, labWorkNew);
+            client.send(exchangeClass);
         } catch (WrongArgumentException e) {
             System.out.println("Аргумент " + argument + " некорректен");
         }

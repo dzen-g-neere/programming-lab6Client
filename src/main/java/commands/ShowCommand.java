@@ -1,17 +1,17 @@
 package commands;
+import connection.Client;
+import connection.ExchangeClass;
 import exceptions.WrongArgumentException;
-import utility.CollectionManager;
 
 
 /**
  * This is command 'show'. Prints all elements of collection.
  */
 public class ShowCommand extends AbstractCommand implements Command{
-    private CollectionManager collectionManager;
-
-    public ShowCommand(CollectionManager collectionManager) {
+    Client client;
+    public ShowCommand(Client client) {
         super("show", " - вывести в стандартный поток вывода все элементы коллекции в строковом представлении");
-        this.collectionManager = collectionManager;
+        this.client = client;
     }
 
     /**
@@ -23,7 +23,8 @@ public class ShowCommand extends AbstractCommand implements Command{
             if (!argument.isEmpty()) {
                 throw new WrongArgumentException();
             }
-            collectionManager.showCollection();
+            ExchangeClass exchangeClass = new ExchangeClass("show", argument, null);
+            client.send(exchangeClass);
         } catch (WrongArgumentException e) {
             System.out.println("Используйте: '" + getName() + "'");
         } catch (Exception e) {

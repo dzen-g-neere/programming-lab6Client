@@ -1,11 +1,12 @@
 package labwork;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  * Location
  */
-public class Location {
+public class Location implements Serializable {
     private int x;
     private int y;
     private float z;

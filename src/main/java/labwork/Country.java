@@ -1,9 +1,11 @@
 package labwork;
 
+import java.io.Serializable;
+
 /**
  * Nationality.
  */
-public enum Country {
+public enum Country implements Serializable {
     FRANCE("FRANCE"),
     VATICAN("VATICAN"),
     ITALY("ITALY"),

@@ -1,6 +1,7 @@
 package utility;
 
 import commands.*;
+import connection.Client;
 import exceptions.IncorrectScriptException;
 
 import java.util.ArrayList;
@@ -23,7 +24,6 @@ public class CommandManager {
     private RemoveKeyCommand removeKeyCommand;
     private ReplaceIfGreaterCommand replaceIfGreaterCommand;
     private ReplaceIfLowerCommand replaceIfLowerCommand;
-    private SaveCommand saveCommand;
 
 
     /**
@@ -44,8 +44,7 @@ public class CommandManager {
             RemoveGreaterKey removeGreaterKey,
             RemoveKeyCommand removeKeyCommand,
             ReplaceIfGreaterCommand replaceIfGreaterCommand,
-            ReplaceIfLowerCommand replaceIfLowerCommand,
-            SaveCommand saveCommand
+            ReplaceIfLowerCommand replaceIfLowerCommand
     ) {
         this.insertCommand = insertCommand;
         this.showCommand = showCommand;
@@ -62,7 +61,6 @@ public class CommandManager {
         this.removeKeyCommand = removeKeyCommand;
         this.replaceIfGreaterCommand = replaceIfGreaterCommand;
         this.replaceIfLowerCommand = replaceIfLowerCommand;
-        this.saveCommand = saveCommand;
 
         commandArrayList.add(insertCommand);
         commandArrayList.add(showCommand);
@@ -79,7 +77,6 @@ public class CommandManager {
         commandArrayList.add(removeKeyCommand);
         commandArrayList.add(replaceIfGreaterCommand);
         commandArrayList.add(replaceIfLowerCommand);
-        commandArrayList.add(saveCommand);
     }
 
     /**
@@ -136,12 +133,6 @@ public class CommandManager {
         clearCommand.execute(s);
     }
 
-    /**
-     * Start execute of 'save' command.
-     */
-    public void save(String s) {
-        saveCommand.execute(s);
-    }
 
     /**
      * Start execute of 'execute_script' command.

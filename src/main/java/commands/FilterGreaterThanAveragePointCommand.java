@@ -1,16 +1,16 @@
 package commands;
 
-import utility.CollectionManager;
+import connection.Client;
+import connection.ExchangeClass;
 
 /**
  * This is command 'filter_greater_than_average_point'. Prints elements which 'averagePoint' is more than given.
  */
 public class FilterGreaterThanAveragePointCommand extends AbstractCommand implements Command{
-    CollectionManager collectionManager;
-
-    public FilterGreaterThanAveragePointCommand(CollectionManager collectionManager) {
+    private Client client;
+    public FilterGreaterThanAveragePointCommand(Client client) {
         super("filter_greater_than_average_point", " averagePoint - вывести элементы, значение поля averagePoint которых больше заданного");
-        this.collectionManager = collectionManager;
+        this.client = client;
     }
 
     /**
@@ -24,7 +24,8 @@ public class FilterGreaterThanAveragePointCommand extends AbstractCommand implem
             if (averagePoint <= 0){
                 throw new NumberFormatException();
             }
-            collectionManager.filterGreaterThanAveragePoint(averagePoint);
+            ExchangeClass exchangeClass = new ExchangeClass("filter_greater_than_average_point",argument,null);
+            client.send(exchangeClass);
         } catch (NullPointerException e){
             System.out.println("Ошибка. Аргумент не может быть пустой строкой.");
         } catch (NumberFormatException e){

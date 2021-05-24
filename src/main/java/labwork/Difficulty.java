@@ -1,9 +1,11 @@
 package labwork;
 
+import java.io.Serializable;
+
 /**
  * Difficulty of labwork.
  */
-public enum Difficulty {
+public enum Difficulty implements Serializable {
     HARD("HARD"),
     VERY_HARD("VERY_HARD"),
     IMPOSSIBLE("IMPOSSIBLE");

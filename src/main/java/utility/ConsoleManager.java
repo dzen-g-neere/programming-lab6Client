@@ -17,14 +17,12 @@ public class ConsoleManager {
     static int recurs_max = 2;
     CommandManager commandManager;
     LabWorkAsker labWorkAsker;
-    FileManager fileManager;
     private Scanner scanner;
     private HashSet<String> scriptsInProcess = new HashSet<String>();
 
     public ConsoleManager(Scanner scanner, CommandManager commandManager, LabWorkAsker labWorkAsker) {
         this.scanner = scanner;
         this.commandManager = commandManager;
-        this.fileManager = fileManager;
         this.labWorkAsker = labWorkAsker;
     }
 
@@ -150,9 +148,6 @@ public class ConsoleManager {
                     break;
                 case "clear":
                     commandManager.clear(userCommand[1]);
-                    break;
-                case "save":
-                    commandManager.save(userCommand[1]);
                     break;
                 case "execute_script":
                     scriptMode(userCommand[1]);

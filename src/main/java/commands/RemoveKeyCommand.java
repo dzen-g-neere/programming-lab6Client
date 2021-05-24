@@ -1,17 +1,17 @@
 package commands;
 
+import connection.Client;
+import connection.ExchangeClass;
 import exceptions.WrongArgumentException;
-import utility.CollectionManager;
 
 /**
  * This is command 'remove_key'. Deletes element by key.
  */
 public class RemoveKeyCommand extends AbstractCommand implements Command{
-    CollectionManager collectionManager;
-
-    public RemoveKeyCommand(CollectionManager collectionManager) {
+    private Client client;
+    public RemoveKeyCommand(Client client) {
         super("remove_key", " \"key\" - удалить элемент из коллекции по его ключу");
-        this.collectionManager = collectionManager;
+        this.client = client;
     }
     /**
      * Execute of 'remove_key' command.
@@ -20,7 +20,8 @@ public class RemoveKeyCommand extends AbstractCommand implements Command{
     public void execute(String argument) {
         try {
             if (argument.isEmpty()) throw new WrongArgumentException();
-            collectionManager.removeKey(argument);
+            ExchangeClass exchangeClass = new ExchangeClass("remove_key", argument, null);
+            client.send(exchangeClass);
         }catch (WrongArgumentException e){
             System.out.println("Некорректный аргумент");
         }

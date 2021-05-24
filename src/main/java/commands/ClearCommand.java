@@ -1,16 +1,17 @@
 package commands;
 
+import connection.Client;
+import connection.ExchangeClass;
 import exceptions.WrongArgumentException;
-import utility.CollectionManager;
 
 /**
  * This is command 'clear'. Delete all elements of collection.
  */
 public class ClearCommand extends AbstractCommand implements Command{
-    CollectionManager collectionManager;
-    public ClearCommand(CollectionManager collectionManager) {
+    Client client;
+    public ClearCommand(Client client) {
         super("clear", " - очистить коллекцию");
-        this.collectionManager = collectionManager;
+        this.client = client;
     }
     /**
      * Execute of 'clear' command.
@@ -21,8 +22,8 @@ public class ClearCommand extends AbstractCommand implements Command{
             if (!argument.isEmpty()) {
                 throw new WrongArgumentException();
             }
-            collectionManager.clearCollection();
-            System.out.println("Коллекция очищена");
+            ExchangeClass exchangeClass = new ExchangeClass("clear",argument,null);
+            client.send(exchangeClass);
         } catch (WrongArgumentException e) {
             System.out.println("Некорректный аргумент. Используйте: '" + getName() + "'");
         } catch (Exception e) {

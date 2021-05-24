@@ -1,9 +1,11 @@
 package labwork;
 
+import java.io.Serializable;
+
 /**
  * Color.
  */
-public enum Color {
+public enum Color implements Serializable {
     RED("RED"),
     ORANGE("ORANGE"),
     GREEN("GREEN"),
