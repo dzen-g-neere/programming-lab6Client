@@ -150,7 +150,7 @@ public class ConsoleManager {
                     commandManager.clear(userCommand[1]);
                     break;
                 case "execute_script":
-                    scriptMode(userCommand[1]);
+                    commandManager.execute_script(userCommand[1]);
                     break;
                 case "exit":
                     commandManager.exit(userCommand[1]);

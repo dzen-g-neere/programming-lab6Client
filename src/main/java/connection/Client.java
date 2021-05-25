@@ -22,8 +22,8 @@ public class Client {
             sending = bos.toByteArray();
             DatagramPacket packet = new DatagramPacket(sending, sending.length, socketAddress);
             socket.send(packet);
-            System.out.println(packet);
-            System.out.println("exchangeClass = " + exchangeClass);
+            //System.out.println(packet);
+            //System.out.println("exchangeClass = " + exchangeClass);
             receive();
         } catch (PortUnreachableException e) {
             System.out.println("Порт недоступен");

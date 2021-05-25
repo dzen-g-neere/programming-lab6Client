@@ -25,10 +25,9 @@ public class UpdateIDCommand extends AbstractCommand implements Command {
     @Override
     public void execute(String argument) throws IncorrectScriptException {
         try {
-            int i = Integer.parseInt(argument);
             LabWork labWork = new LabWork(
                     labWorkAsker.askID(),
-                    labWorkAsker.askName(),
+                    argument,
                     labWorkAsker.askCoordinates(),
                     labWorkAsker.askDate(),
                     labWorkAsker.askMinimalPoint(),

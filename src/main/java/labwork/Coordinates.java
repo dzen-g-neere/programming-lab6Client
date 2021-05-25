@@ -6,7 +6,7 @@ import java.util.Objects;
 /**
  * Coordinates.
  */
-public class Coordinates implements Serializable {
+public class Coordinates implements Serializable, Comparable<Coordinates> {
     private Integer x; //Поле не может быть null
     private Float y; //Максимальное значение поля: 807, Поле не может быть null
 
@@ -51,5 +51,10 @@ public class Coordinates implements Serializable {
                 "x=" + x +
                 ", y=" + y +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Coordinates coordinates) {
+        return getX().compareTo(coordinates.getX());
     }
 }

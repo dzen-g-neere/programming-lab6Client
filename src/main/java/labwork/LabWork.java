@@ -34,10 +34,13 @@ public class LabWork implements Comparable<LabWork>, Serializable {
         return id;
     }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
     }
-
 
     public void setName(String name) {
         this.name = name;
@@ -101,7 +104,7 @@ public class LabWork implements Comparable<LabWork>, Serializable {
 
     @Override
     public int compareTo(LabWork labWork) {
-        return getName().compareTo(labWork.getName());
+        return getCoordinates().compareTo(labWork.getCoordinates());
     }
 
     @Override
