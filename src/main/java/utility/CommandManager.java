@@ -97,9 +97,9 @@ public class CommandManager {
     public void help(String argument) {
         if (argument.equals("")) {
             helpCommand.execute(argument);
-            for (Command command : commandArrayList) {
+            /*for (Command command : commandArrayList) {
                 System.out.println(command.getName() + command.getDescription());
-            }
+            }*/
         } else {
             helpCommand.execute(argument);
         }
